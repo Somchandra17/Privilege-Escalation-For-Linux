@@ -17,7 +17,7 @@ List of Tools and Repositories 👇🏻
 **GTFOBins** - https://gtfobins.github.io/
 
 **Using *LD_Preload***
-> This piece of code will spawn root shell
+> This piece of code will spawn root shell ➡️ [shell.c](https://github.com/Somchandra17/Privilege-Escalation/blob/01f889492ff51414fa077a01fa538ecd5a0d4543/shell.c)
 ```
 #include <stdio.h>
 #include <sys/types.h>
