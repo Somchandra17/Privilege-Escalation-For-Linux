@@ -52,5 +52,5 @@ sudo LD_PRELOAD=/home/user/ldpreload/shell.so find
 ```
 getcap -r / 2>/dev/null
 ```
-> If you find any set capabilities then use GTFOBins - https://gtfobins.github.io/#+capabilities
+> If you find any set capabilities then use GTFOBins and search your Binary name - https://gtfobins.github.io/#+capabilities
 
