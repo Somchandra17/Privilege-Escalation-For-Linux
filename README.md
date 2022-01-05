@@ -14,7 +14,12 @@ List of Tools and Repositories 👇🏻
 
 **Linux Priv Checker** - https://github.com/linted/linuxprivchecker 
 
-**GTFOBins** - https://gtfobins.github.io/
+**GTFOBins** - https://gtfobins.github.io/ ⭐
+
+**To list all the files which have SUID and SGID bits set**
+```
+find / -type f -perm -04000 -ls 2>/dev/null
+```
 
 **Using *LD_Preload***
 > This piece of code will spawn root shell ➡️ [shell.c](https://github.com/Somchandra17/Privilege-Escalation/blob/01f889492ff51414fa077a01fa538ecd5a0d4543/shell.c)
