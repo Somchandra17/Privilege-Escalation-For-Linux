@@ -54,3 +54,8 @@ getcap -r / 2>/dev/null
 ```
 > If you find any set capabilities then use GTFOBins and search your Binary name - https://gtfobins.github.io/#+capabilities
 
+**Cron job configurations**
+> Anyone can read the file cron jobs under 👇🏻
+```
+/etc/crontab
+```
