@@ -67,4 +67,4 @@ getcap -r / 2>/dev/null
 > If able to modify the $PATH then ``export PATH=/DIR:$PATH`` (make sure to change the DIR)
 
 now we have the required directory listed in out $PATH then we can just create a Script to exploit it 
-For example 👉🏻 [path.c](https://github.com/Somchandra17/Privilege-Escalation/blob/01f889492ff51414fa077a01fa538ecd5a0d4543/path.c)
+For example 👉🏻 [path.c](path.c)
