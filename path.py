@@ -4,6 +4,6 @@ import os
 import sys
 
 try: 
-	os.system("thm")
+	os.system("tobeX")
 except:
 	sys.exit()
