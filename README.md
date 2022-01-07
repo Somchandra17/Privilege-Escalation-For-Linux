@@ -69,7 +69,8 @@ getcap -r / 2>/dev/null
 now we have the required directory listed in out $PATH then we can just create a Script to exploit it 
 
 For example 👉🏻 [path.c](path.c).
-Now compile it using gcc ``gcc path.c -o shell``.
+Now compile it using gcc ``gcc path.c -o shell``. OR you can also use python3 file [path.py](path.py) just run it as executable not as python3 file.py
+
 After compiling set the SUID bit ``chmod u+s shell``
 
 Now, go into the directory whichever you have added to $PATH and create a executable file ``echo "/bin/bash" > tobeX ``
