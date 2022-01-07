@@ -59,3 +59,12 @@ getcap -r / 2>/dev/null
 ```
 /etc/crontab
 ```
+**Using $PATH**
+> list the PATH by ``echo $PATH``
+
+> find for writable path ``find / -writable 2>/dev/null`` or clean -> `` find / -writable 2>/dev/null | cut -d "/" -f2 | sort -u ``
+
+> If able to modify the $PATH then ``export PATH=/DIR:$PATH`` (make sure to change the DIR)
+
+now we have the required directory listed in out $PATH then we can just create a Script to exploit it 
+For example 👉🏻 [path.c](https://github.com/Somchandra17/Privilege-Escalation/blob/01f889492ff51414fa077a01fa538ecd5a0d4543/path.c)
