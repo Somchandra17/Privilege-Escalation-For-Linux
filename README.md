@@ -138,7 +138,7 @@ getcap -r / 2>/dev/null
   - For example 👉🏻 [path.c](path.c).
   - Now compile it using gcc ``gcc path.c -o shell``. 
 
-  - OR you can also use python3 file [path.py](path.py), just run it as executable`/{filename}` ❌ not as `python3 {file.py}` ❌
+  - OR you can also use python3 file [path.py](path.py), just run it as executable`./{filename}` ❌ not as `python3 {file.py}` ❌
 
   - After compiling set the SUID bit ``chmod u+s shell``
 
