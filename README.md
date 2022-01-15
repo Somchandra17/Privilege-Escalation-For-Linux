@@ -36,7 +36,9 @@ cat /proc/version
 ---
 
 
-## To list all the Binaries which have SUID and SGID bits set
+## Exploitiing all the Binaries which have SUID and SGID bits set
+  -To list all the binaries which have SUID and SGID buts set
+  
 ```
 find / -type f -perm -04000 -ls 2>/dev/null
 ```
