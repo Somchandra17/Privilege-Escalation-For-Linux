@@ -1,7 +1,7 @@
 <h1 align="center">
   Privilege-Escalation-For-Linux
 </h1>
-<h3 align="center">To bypass security restrictions in misconfigured systems.</h4>
+<h3 align="center">To bypass security restrictions in misconfigured systems for beginners.</h4>
 
 
 ---
