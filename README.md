@@ -30,9 +30,24 @@ uname -a
 cat /etc/issue
 cat /proc/version
 ```
-  - Now we have the information we can search for the vulnerabilities in Google or [exploit-db](www.exploit-db.com)
+  - Now we have the information we can search for the vulnerabilities in [exploit-db](www.exploit-db.com) or on https://www.linuxkernelcves.com/cves
   - We can also use [Linux Priv Checker]( https://github.com/linted/linuxprivchecker ) as mentioned above.
+  
+    - ### Dirty Cow  
 
+       - [CVE-2016-5195](https://www.linuxkernelcves.com/cves/CVE-2016-5195) This is one of the famous kernel exploits as it affected almost all of the linux based OS
+       - List of PoCs - https://github.com/dirtycow/dirtycow.github.io/wiki/PoCs
+       - By using this vulnerability we can write to a file which we have read-only permission
+       - First of all we command the kernel to create a private mapping of ``root_file`` using ``mmap`` .
+       - It is stored in physical memory. We can also specify the location in the physical memory by ``mmap()`` call
+       - But the kernal do not do all these yet until we start wrting to our private mapping (COW - copy-on-write)
+       - Now we write to ``proc/self/mem``.
+       - It begins to write the  ``root_file``.
+       - Now, the kernel also need to create a private copy so it does.
+       - In between these these steps "Locating physical address" and "writing to that address". We can get in the middle of the two steps and run some other/malicious code 
+       - This is how we tricked the kernel to write to a file which was only having read-only-access
+       - we can use [dirtyc0w.c](https://github.com/dirtycow/dirtycow.github.io/blob/master/dirtyc0w.c) for PoC
+       - > For visualization -  https://www.cs.toronto.edu/~arnold/427/18s/427_18S/indepth/dirty-cow/demo.html
 ---
 
 
@@ -128,14 +143,27 @@ getcap -r / 2>/dev/null
 
 ## Using $PATH
   - list the PATH by ``echo $PATH``
-
+  
+  - Check if the current folder in $PATH is writable 👇
+  
   - find for writable path ``find / -writable 2>/dev/null`` or clean the out put using -> `` find / -writable 2>/dev/null | cut -d "/" -f2 | sort -u ``
+![writable](https://user-images.githubusercontent.com/85082756/149846878-6f3c25b7-c37e-4756-8910-5e39640ce52d.png)
 
-  - If able to modify the $PATH then ``export PATH=/DIR:$PATH`` (make sure to change the DIR)
 
-  - now we have the required directory listed in out $PATH then we can just create a Script to exploit it 
 
-  - For example 👉🏻 [path.c](path.c).
+  - To find the folder under the writable path use ``find / -writable 2>/dev/null | grep {DIR} | cut -d "/" -f 2,3,4 | sort -u`` (change the {DIR})
+
+  - Check if the current user can modify the path
+  
+  - If you can then add the following folder in $PATH which is writable in most of the cases it is ``/tmp``
+
+  - If able to modify the $PATH then ``export PATH=/{DIR}:$PATH`` (make sure to change the {DIR})
+
+  - Now we have the required directory listed in out $PATH then we can just create a Script to exploit it 
+
+  - Go to any writable folder and make a script using nano
+
+  - script  example 👉🏻 [path.c](path.c).
   - Now compile it using gcc ``gcc path.c -o shell``. 
 
   - OR you can also use python3 file [path.py](path.py), just run it as executable`./{filename}` ❌ not as `python3 {file.py}` ❌
@@ -146,6 +174,8 @@ getcap -r / 2>/dev/null
   give it executable rights ``chmod 777 tobeX ``
 
   - Final Step ->  Just run script that we have created  ``./shell``. Boom!
+
+> [Becoming Root Via a Misconfigured PATH](https://betterprogramming.pub/becoming-root-via-a-misconfigured-path-720a52981c93)
 
 ---
 
