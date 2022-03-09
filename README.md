@@ -203,5 +203,12 @@ int main()
 
   - Just compile it and run it from the target system.
 
+---
+
+## CVE-2021-4034
+  - (from any user to root) inpolkit's pkexec, a SUID-root program that is installed by default on every major Linux distribution.
+  - This vulnerability is an attacker's dream come true.
+  - [cve-2021-4034-poc.c](https://github.com/arthepsy/CVE-2021-4034/blob/main/cve-2021-4034-poc.c)
+
 
 ### Thanks for Reading.
