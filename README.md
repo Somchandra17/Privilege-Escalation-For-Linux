@@ -54,7 +54,6 @@ cat /proc/version
 ## CVE-2021-4034
 
   - ### PwnKit Vulnerability
-  - 
   - (from any user to root) inpolkit's pkexec, a SUID-root program that is installed by default on every major Linux distribution.
   - This vulnerability is an attacker's dream come true.
   - [cve-2021-4034-poc.c](https://github.com/arthepsy/CVE-2021-4034/blob/main/cve-2021-4034-poc.c)
