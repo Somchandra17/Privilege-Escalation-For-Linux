@@ -68,6 +68,10 @@ cat /proc/version
 ```
 find / -type f -perm -04000 -ls 2>/dev/null
 ```
+OR
+```
+find / -perm -u=s -type f 2>/dev/null
+```
   - after listing all the binaries check the exploits in [GTFOBins](https://gtfobins.github.io/) 
 
 ---
