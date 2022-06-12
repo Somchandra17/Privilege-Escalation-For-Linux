@@ -11,7 +11,7 @@
 
 
 
-## List of Automated Eumeration Tools 👇🏻
+## Automated Eumeration Tools
 
   - LinPeas - https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS
   - LinEnum - https://github.com/rebootuser/LinEnum
