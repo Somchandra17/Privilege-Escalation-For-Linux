@@ -242,4 +242,4 @@ int main()
   - Just compile it and run it from the target system.
 
 
-<h3> Thanks for reading. </h3>
+Thanks for reading.
